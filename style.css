@@ -1,0 +1,762 @@
+/* Variables de Color */
+:root {
+    --primary-color: #A00000; /* Rojo/Granate de Perú/Pasión */
+    --secondary-color: #FFD700; /* Dorado/Amarillo */
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --background-dark: #222222;
+    --background-light: #f4f4f4;
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --info-color: #17a2b8; /* Azul claro para información */
+}
+
+/* Base y Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    scroll-behavior: smooth;
+}
+
+/* --- Barra de Navegación (Header) --- */
+.navbar {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.navbar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* --- Sección Principal (Hero) --- */
+.hero-section {
+    background: url('https://picsum.photos/1600/900?random=1') no-repeat center center/cover; 
+    height: 80vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: var(--text-light);
+}
+
+.hero-overlay {
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 3rem;
+    border-radius: 10px;
+    max-width: 800px;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-section p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.cta-button:hover {
+    background-color: #e0bb00;
+    transform: translateY(-2px);
+}
+
+/* --- Secciones de Contenido General --- */
+.content-section {
+    padding: 4rem 10%;
+    text-align: center;
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    border-bottom: 3px solid var(--secondary-color);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+/* Estilos de fondo para secciones */
+.about-us {
+    background-color: var(--background-light);
+    text-align: left;
+}
+
+.placeholder-section {
+    background-color: #e9ecef;
+    min-height: 30vh;
+}
+
+.dark-section {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+.dark-section h2 {
+    color: var(--text-light);
+    border-color: var(--primary-color);
+}
+
+/* --- Partidos Próximos --- */
+.upcoming-matches {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+.match-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 2rem;
+}
+
+.match-card {
+    background-color: #333;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.teams {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.odds {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.odd-button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 0.5rem 0.2rem;
+    flex: 1;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 1.5rem 10%;
+    font-size: 0.9rem;
+}
+
+/* --- MÓDULO: Modal de Autenticación / GENERAL --- */
+.auth-modal {
+    display: none; 
+    position: fixed;
+    z-index: 3000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--text-light);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+.close-btn {
+    color: var(--text-dark);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.auth-form {
+    display: none;
+    text-align: center;
+}
+
+.auth-form.active-form {
+    display: block;
+}
+
+.auth-form h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    border: none;
+}
+
+.auth-form form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* --- Mensaje de Éxito Emergente (Popup) --- */
+.success-popup {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: var(--text-light);
+    color: var(--text-dark);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    animation: fadeIn 0.3s ease-out; 
+}
+
+.popup-content h3 {
+    color: var(--success-color);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+/* Keyframes para animación de entrada */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+
+/* --- SECCIÓN PERFIL DE USUARIO --- */
+
+.profile-section {
+    padding: 3rem 10%;
+    text-align: left;
+    min-height: 80vh;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-header h2 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    border: none;
+}
+
+/* Dashboard Financiero */
+.financial-dashboard {
+    background-color: #333;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.financial-dashboard h3 {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.balance-card {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.balance-card .card-icon {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.balance-card .balance-amount {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 2rem;
+}
+
+.action-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 200px;
+}
+
+.deposit-btn {
+    background-color: var(--success-color);
+    color: var(--text-light);
+}
+
+.deposit-btn:hover {
+    background-color: #1e7e34;
+}
+
+/* Color para el botón de Retirar */
+.withdraw-btn {
+    background-color: var(--error-color); 
+    color: var(--text-light);
+}
+
+.withdraw-btn:hover {
+    background-color: #c82333;
+}
+
+
+.payment-info {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #555;
+}
+
+.payment-info h4 {
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.payment-methods span {
+    background-color: var(--background-dark);
+    border: 1px solid #555;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    color: var(--secondary-color);
+}
+
+/* Resumen de Apuestas/Movimientos */
+.bet-summary {
+    text-align: center;
+}
+
+.bet-summary h3 {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Contenedor del Historial */
+.history-table-container {
+    margin-top: 20px;
+    overflow-x: auto; /* Para scroll horizontal en móviles si es necesario */
+}
+
+.history-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    color: var(--text-light);
+    background-color: #333;
+}
+
+.history-table-container th, .history-table-container td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+.history-table-container th {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.history-table-container tbody tr:hover {
+    background-color: #444;
+}
+
+/* Colores de Monto */
+.amount-deposit {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.amount-withdraw {
+    color: var(--error-color);
+    font-weight: bold;
+}
+
+.amount-bet {
+    color: var(--info-color);
+    font-weight: bold;
+}
+
+/* Estilos para el botón de Mostrar/Ocultar historial */
+#toggle-history-btn {
+    margin-bottom: 20px;
+    background-color: var(--info-color);
+}
+
+#toggle-history-btn:hover {
+    background-color: #117a8b;
+}
+
+/* --- ESTILOS ADICIONALES PARA MODALES DE DEPOSITO Y APUESTA --- */
+
+.payment-selection {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    background-color: var(--background-light);
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--text-dark);
+}
+
+.payment-option {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#deposit-modal h3, #withdraw-modal h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+#withdraw-modal p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* Estilos específicos para el Modal de Apuesta */
+#bet-modal .modal-content {
+    max-width: 400px;
+}
+
+#bet-match-info {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.selection-info {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    padding: 5px;
+    background-color: var(--secondary-color);
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.potential-win {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+#potential-win-amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--success-color);
+    margin-bottom: 20px;
+}
+
+
+/* --- ESTILOS PARA EL PANEL DE ADMINISTRACIÓN --- */
+
+#admin-panel {
+    min-height: 100vh;
+    padding: 3rem 5%;
+}
+
+.admin-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 10px;
+}
+
+.tab-btn {
+    background-color: #555;
+    color: var(--text-light);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.tab-btn:hover {
+    background-color: #777;
+}
+
+.tab-btn.active {
+    background-color: var(--primary-color);
+    box-shadow: 0 -3px 0 var(--secondary-color) inset;
+}
+
+.admin-section {
+    display: none;
+    background-color: #333;
+    padding: 2rem;
+    border-radius: 0 5px 5px 5px;
+    min-height: 400px;
+}
+
+.admin-section.active-section {
+    display: block;
+}
+
+.admin-section h3 {
+    color: var(--secondary-color);
+    border-bottom: 2px solid #555;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.admin-info {
+    color: #ccc;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.admin-form {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.admin-form h4 {
+    color: var(--success-color);
+    margin-bottom: 15px;
+}
+
+.admin-form input, .admin-form button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #555;
+}
+
+.odds-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.odds-inputs input {
+    width: calc(33.33% - 7px);
+}
+
+.admin-separator {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #555, transparent);
+    margin: 20px 0;
+}
+
+/* Tablas de Reporte */
+.report-table-container {
+    margin-bottom: 20px;
+}
+
+#user-reports table {
+    width: 100%;
+    color: var(--text-light);
+}
+
+#user-reports th {
+    background-color: var(--info-color);
+    color: var(--text-light);
+}
+
+.summary-text {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+/* Listado de Partidos Administrador */
+.admin-match-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-match-card {
+    background-color: #444;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-light);
+}
+
+.admin-match-info strong {
+    color: var(--secondary-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.admin-match-odds {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.status-active {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.status-finished {
+    color: var(--error-color);
+    font-weight: bold;
+}
+
+.admin-match-actions button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.admin-match-actions .delete-btn {
+    background-color: #888;
+    color: var(--text-dark);
+}
+.admin-match-actions .delete-btn:hover {
+    background-color: #b00000;
+    color: var(--text-light);
+}
+.admin-match-actions .update-btn {
+    background-color: var(--info-color);
+    color: var(--text-light);
+}
+.admin-match-actions .update-btn:hover {
+    background-color: #117a8b;
+}

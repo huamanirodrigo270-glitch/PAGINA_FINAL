@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 Copa Perú Bets - Tu Destino para Apostar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <div id="success-message" class="success-popup">
+        <div class="popup-content">
+            <h3>🎉 ¡Operación Exitosa!</h3>
+            <p id="success-text">Bienvenido a Copa Perú Bets. ¡Tu pasión por el fútbol peruano te espera!</p>
+            <button onclick="closeSuccessMessage()">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="auth-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+            <div id="login-section" class="auth-form active-form">
+                <h2>Iniciar Sesión</h2>
+                <form id="login-form">
+                    <input type="email" id="login-email" placeholder="Correo Electrónico" required>
+                    <input type="password" id="login-password" placeholder="Contraseña" required>
+                    <button type="submit" class="submit-btn">Ingresar</button>
+                    <p class="switch-link">¿No tienes cuenta? <a href="#" onclick="showRegister()">Regístrate</a></p>
+                </form>
+            </div>
+            
+            <div id="register-section" class="auth-form">
+                <h2>Registro de Cuenta</h2>
+                <form id="register-form">
+                    <input type="text" id="register-name" placeholder="Nombre Completo" required>
+                    <input type="email" id="register-email" placeholder="Correo Electrónico" required>
+                    <input type="password" id="register-password" placeholder="Contraseña" required>
+                    <input type="password" id="register-confirm-password" placeholder="Confirmar Contraseña" required>
+                    <button type="submit" class="submit-btn register-btn">Crear Cuenta</button>
+                    <p class="switch-link">¿Ya tienes cuenta? <a href="#" onclick="showLogin()">Iniciar Sesión</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="deposit-modal" class="auth-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeDepositModal()">&times;</span>
+            <h2>💳 Realizar Depósito</h2>
+            <form id="deposit-form">
+                <input type="number" id="deposit-amount" placeholder="Monto a Depositar (S/)" min="10" required>
+                
+                <h3>Seleccionar Método</h3>
+                <div class="payment-selection">
+                    <label for="method-visa" class="payment-option">
+                        <input type="radio" id="method-visa" name="deposit-method" value="VISA" checked> VISA / Mastercard
+                    </label>
+                    <label for="method-yape" class="payment-option">
+                        <input type="radio" id="method-yape" name="deposit-method" value="YAPE"> Yape
+                    </label>
+                </div>
+
+                <input type="text" placeholder="Número de Tarjeta/Yape (Ficticio)" required>
+                <input type="text" placeholder="Fecha Vencimiento (MM/AA)" maxlength="5">
+                <input type="text" placeholder="CVV (Ficticio)" maxlength="4">
+
+                <button type="submit" class="submit-btn deposit-btn">Confirmar Depósito</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="withdraw-modal" class="auth-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeWithdrawModal()">&times;</span>
+            <h2>💸 Realizar Retiro</h2>
+            <form id="withdraw-form">
+                <p>Saldo Actual: <strong id="current-balance-display">S/ 0.00</strong></p>
+                <input type="number" id="withdraw-amount" placeholder="Monto a Retirar (S/)" min="10" required>
+                
+                <h3>Datos de Cuenta (Ficticios)</h3>
+                <input type="text" placeholder="Número de Cuenta Bancaria (Ficticio)" required>
+                <input type="text" placeholder="Nombre del Titular" required>
+                <input type="text" placeholder="Banco (Ej: BCP, BBVA)" required>
+
+                <button type="submit" class="submit-btn withdraw-btn">Solicitar Retiro</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="bet-modal" class="auth-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeBetModal()">&times;</span>
+            <h2>🎫 Ticket de Apuesta</h2>
+            <form id="bet-form">
+                <h3 id="bet-match-info">Partido: [Equipo A] vs [Equipo B]</h3>
+                <p id="bet-selection-info" class="selection-info">Selección: [Resultado] (Cuota: 0.00)</p>
+
+                <input type="number" id="bet-amount" placeholder="Monto a Apostar (S/)" min="1" required>
+                
+                <p class="potential-win">Ganancia Potencial:</p>
+                <p id="potential-win-amount" class="balance-amount">S/ 0.00</p>
+
+                <button type="submit" class="submit-btn register-btn">Colocar Apuesta</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="finish-match-modal" class="auth-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeFinishModal()">&times;</span>
+            <h2>🛑 Finalizar Partido</h2>
+            <form id="finish-match-form">
+                <h3 id="finish-match-info">Partido: [Equipo A] vs [Equipo B]</h3>
+                
+                <p style="margin: 20px 0; font-weight: bold;">Selecciona el Resultado Final:</p>
+                
+                <div class="payment-selection" style="justify-content: space-around; gap: 10px;">
+                    <label class="payment-option">
+                        <input type="radio" name="final-result" value="1" required> Gana Local (1)
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="final-result" value="X"> Empate (X)
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="final-result" value="2"> Gana Visitante (2)
+                    </label>
+                </div>
+
+                <input type="hidden" id="match-id-to-finish">
+                <button type="submit" class="submit-btn withdraw-btn">Confirmar Resultado y Liquidar</button>
+            </form>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="logo">🏆 Copa Perú Bets</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#partidos">Partidos</a></li>
+                <li><a href="#resultados">Resultados</a></li>
+                <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                
+                <li style="display: none;"><a href="#admin-panel" id="admin-btn">Panel Admin</a></li>
+
+                <li><a href="#" id="login-btn" onclick="openAuthModal('login')">Login / Registrar</a></li>
+                
+                <li style="display: none;"><a href="#perfil-usuario" id="profile-btn">Mi Perfil</a></li>
+                
+                <li style="display: none;"><a href="#" id="logout-btn">Salir</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero-section">
+        <div class="hero-overlay">
+            <h1>Tu Destino para Apostar en la Copa Perú</h1>
+            <p>Siente la pasión del fútbol macho. ¡Apuesta por tu equipo local!</p>
+            <button id="register-button" class="cta-button">Regístrate Ahora</button>
+        </div>
+    </section>
+
+    <section id="quienes-somos" class="content-section about-us">
+        <h2>¿Quiénes Somos?</h2>
+        <p>Somos **Copa Perú Bets**, la única plataforma de apuestas dedicada exclusivamente al torneo más emocionante y auténtico del fútbol peruano: **La Copa Perú**.</p>
+        <p>Nacimos de la pasión por el fútbol de ascenso, con el objetivo de llevar la emoción de los estadios regionales directamente a la palma de tu mano. Nuestra misión es ofrecer una plataforma **simple, funcional y segura** para que apuestes con confianza en los equipos de tu región, desde la Etapa Distrital hasta la Gran Final Nacional.</p>
+        <p><strong>¡Vive la Copa Perú como nunca antes!</strong></p>
+    </section>
+
+    <section id="partidos" class="content-section upcoming-matches">
+        <h2>⚽ Próximos Partidos - Etapa Nacional</h2>
+        <div class="match-list">
+            </div>
+    </section>
+
+    <section id="resultados" class="content-section placeholder-section">
+        <h2>📊 Resultados Recientes</h2>
+        <p>Aquí encontrarás el historial de resultados y marcadores oficiales de los partidos de la Copa Perú.</p>
+        <p>(Contenido en desarrollo)</p>
+    </section>
+    
+    <section id="perfil-usuario" class="content-section dark-section profile-section" style="display: none;">
+        <div class="profile-header">
+            <h2 id="profile-welcome">👋 Hola, [Nombre de Usuario]</h2>
+            <p>Este es tu centro de control personal. Gestiona tu saldo y revisa tus movimientos.</p>
+        </div>
+
+        <div class="financial-dashboard">
+            <h3>Gestión Financiera</h3>
+            <div class="balance-card">
+                <span class="card-icon">💵</span>
+                <p>SALDO DISPONIBLE</p>
+                <p class="balance-amount" id="user-balance">S/ 0.00</p>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-btn deposit-btn" onclick="openDepositModal()">DEPOSITAR</button>
+                <button class="action-btn withdraw-btn" onclick="openWithdrawModal()">RETIRAR</button> 
+            </div>
+
+            <div class="payment-info">
+                <h4>Aceptamos:</h4>
+                <div class="payment-methods">
+                    <span>💳 VISA</span>
+                    <span>📱 YAPE</span>
+                    <span>🏦 Transferencia Bancaria</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bet-summary">
+            <h3>📑 Historial de Movimientos</h3>
+            <button id="toggle-history-btn" class="view-history-btn">Mostrar Historial de Transacciones</button>
+
+            <div id="transaction-history" class="history-table-container" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                            <th>Monto</th>
+                            <th>Saldo Final</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-body">
+                        </tbody>
+                </table>
+                <p id="no-history-message" style="display: none; padding: 20px; color: #aaa;">Aún no tienes transacciones registradas.</p>
+            </div>
+
+            <div class="bet-list">
+            </div>
+        </div>
+    </section>
+
+
+    <section id="admin-panel" class="content-section dark-section profile-section" style="display: none;">
+        <div class="profile-header">
+            <h2 id="admin-welcome">🛠️ Panel de Administración</h2>
+            <p>Control total sobre partidos, cuotas y usuarios.</p>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="tab-btn active" onclick="showAdminSection('match-management')">Gestión de Partidos</button>
+            <button class="tab-btn" onclick="showAdminSection('user-reports')">Reportes de Usuarios</button>
+        </div>
+
+        <div id="match-management" class="admin-section active-section">
+            <h3>⚽ Administrar Partidos y Cuotas</h3>
+            <p class="admin-info">Aquí puedes crear nuevos partidos y ajustar sus cuotas o resultados finales. (Simulación)</p>
+            
+            <form id="add-match-form" class="admin-form">
+                <h4>Crear Nuevo Partido</h4>
+                
+                <input type="text" id="new-match-region" placeholder="Región (Ej: Cusco / Lima)" required>
+
+                <input type="text" id="new-match-team1" placeholder="Equipo Local" required>
+                <input type="text" id="new-match-team2" placeholder="Equipo Visitante" required>
+                <input type="text" id="new-match-date" placeholder="Fecha (Ej: LUN. 18/12 - 19:00 HRS)" required>
+                
+                <div class="odds-inputs">
+                    <input type="number" step="0.01" id="new-odd-1" placeholder="Cuota Gana Local (Ej: 1.85)" required>
+                    <input type="number" step="0.01" id="new-odd-X" placeholder="Cuota Empate (Ej: 3.20)" required>
+                    <input type="number" step="0.01" id="new-odd-2" placeholder="Cuota Gana Visitante (Ej: 4.10)" required>
+                </div>
+                
+                <button type="submit" class="submit-btn deposit-btn">Añadir Partido</button>
+            </form>
+            
+            <hr class="admin-separator">
+            
+            <h4>Partidos Activos (Simulados)</h4>
+            <div id="active-matches-admin" class="admin-match-list">
+                </div>
+        </div>
+
+        <div id="user-reports" class="admin-section">
+            <h3>👥 Reporte de Usuarios Registrados</h3>
+            <p class="admin-info">Listado de todas las cuentas registradas y sus saldos actuales.</p>
+            
+            <div class="report-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Saldo</th>
+                            <th>Rol</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-report-body">
+                        </tbody>
+                </table>
+            </div>
+            
+            <p class="summary-text">Total de usuarios registrados: <strong id="total-users">0</strong></p>
+        </div>
+
+    </section>
+
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Copa Perú Bets. Apuestas netamente dedicadas a la Copa Perú.</p>
+            <p>Juega de forma responsable. 🇵🇪</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
